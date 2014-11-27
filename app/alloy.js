@@ -40,8 +40,15 @@ xhr.onload = function() {
 	var itemList = xml.documentElement.getElementsByTagName("item");
 	Ti.API.info('found '+itemList.length+' items in the RSS feed');
 	
+	/* title: Titulo de la noticia original
+	 * description: Texto completo en html de la noticia
+	 * link: Enlace a la noticia
+	 * category: Categoría del contenido. Puede no venir. Puede ser N elementos guid: Cadena única del item
+	 * pubDate: Fecha de publicación según RFC 822
+	 */
 	for (var i=0; i < itemList.length; i++) {
-		Ti.API.info('Item ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
+		Ti.API.info('Item title ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
+		Ti.API.info('Item dc:creator ' + itemList.item(i).getElementsByTagName("dc:creator").item(0).textContent);
 	}
 };
 
