@@ -48,7 +48,7 @@ var wArticulos = Titanium.UI.createWindow({
 
 var wAjustes = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
-	title : 'Ajustes'
+	title : 'Preferencias'
 });
 
 var wSocial = Titanium.UI.createWindow({
