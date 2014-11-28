@@ -21,23 +21,34 @@ var wNoticias = Titanium.UI.createWindow({
 });
 
 wMenu.addEventListener('swipe', function(e) {
-	var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
-	loadRSS(url);
+	if(e.direction == 'right'){
+		var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
+		loadRSS(url);
+	}
+	else if(e.direction == 'left'){
+		wArticulos.open();
+	}
+	else if(e.direction == 'down'){
+		wAjustes.open();
+	}
+	else if(e.direction == 'up'){
+		wSocial.open();
+	}
 });
 
 var wArticulos = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
-	title : 'Noticias'
+	title : 'Articulos'
 });
 
 var wAjustes = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
-	title : 'Noticias'
+	title : 'Ajustes'
 });
 
 var wSocial = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
-	title : 'Noticias'
+	title : 'Social'
 });
 
 function setDatos(tablaDatos) {
