@@ -41,7 +41,7 @@ var wNoticias = Titanium.UI.createWindow({
 
 wNoticias.addEventListener('swipe', function(e) {
 	if(e.direction == 'left'){
-		wMenu.open();
+		wNoticias.close();
 	}
 });
 
@@ -52,7 +52,7 @@ var wArticulos = Titanium.UI.createWindow({
 
 wArticulos.addEventListener('swipe', function(e) {
 	if(e.direction == 'right'){
-		wMenu.open();
+		wArticulos.close();
 	}
 });
 
@@ -63,7 +63,7 @@ var wAjustes = Titanium.UI.createWindow({
 
 wAjustes.addEventListener('swipe', function(e) {
 	if(e.direction == 'up'){
-		wMenu.open();
+		wAjustes.close();
 	}
 });
 
@@ -74,8 +74,11 @@ var wSocial = Titanium.UI.createWindow({
 
 
 wSocial.addEventListener('swipe', function(e) {
+	
+	Ti.API.info("Swipe Social");
 	if(e.direction == 'down'){
-		wMenu.open();
+		Ti.API.info("Social -> Menu");
+		wSocial.close();
 	}
 });
 
@@ -125,7 +128,7 @@ function loadRSS(url, type) {
 			});
 			
 			row.add(Ti.UI.createTableViewRow({
-				title : texto
+				title : "texto"
 			}));
 			//Ti.API.info('Item title ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
 			//Ti.API.info('Item dc:creator ' + itemList.item(i).getElementsByTagName("dc:creator").item(0).textContent);
