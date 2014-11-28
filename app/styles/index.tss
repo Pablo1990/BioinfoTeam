@@ -1,15 +1,3 @@
 ".container": {
-	backgroundImage: "Base_Prueba_001.png"
-}
-
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
-}
-
-"#label": {
-	font: {
-		fontSize: 12
-	}
+	backgroundImage: "Fundacion0_001.jpg"
 }
