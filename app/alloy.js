@@ -10,3 +10,7 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+var win2 = Titanium.UI.createWindow({
+	backgroundImage: "FundacionB_001.jpg",
+    title: 'Noticias'
+});
