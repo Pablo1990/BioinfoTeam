@@ -15,11 +15,6 @@ var wMenu = Titanium.UI.createWindow({
 	title : 'Noticias'
 });
 
-var wNoticias = Titanium.UI.createWindow({
-	backgroundImage : "FundacionB_001.jpg",
-	title : 'Noticias'
-});
-
 wMenu.addEventListener('swipe', function(e) {
 	if(e.direction == 'right'){
 		var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
@@ -39,21 +34,48 @@ wMenu.addEventListener('swipe', function(e) {
 	}
 });
 
+var wNoticias = Titanium.UI.createWindow({
+	backgroundImage : "FundacionB_001.jpg",
+	title : 'Noticias'
+});
+
+wNoticias.addEventListener('swipe', function(e) {
+	if(e.direction == 'left'){
+		wMenu.open();
+	}
+});
+
 var wArticulos = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
 	title : 'Articulos'
 });
 
-
+wArticulos.addEventListener('swipe', function(e) {
+	if(e.direction == 'right'){
+		wMenu.open();
+	}
+});
 
 var wAjustes = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
 	title : 'Ajustes'
 });
 
+wAjustes.addEventListener('swipe', function(e) {
+	if(e.direction == 'up'){
+		wMenu.open();
+	}
+});
+
 var wSocial = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
 	title : 'Social'
+});
+
+wSocial.addEventListener('swipe', function(e) {
+	if(e.direction == 'down'){
+		wMenu.open();
+	}
 });
 
 function setDatos(tablaDatos) {
