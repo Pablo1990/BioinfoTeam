@@ -46,7 +46,7 @@ wNoticias.addEventListener('swipe', function(e) {
 });
 
 var wArticulos = Titanium.UI.createWindow({
-	backgroundImage : "Fundacion0_001.jpg",
+	backgroundImage : "FundacionC_001.jpg",
 	title : 'Articulos'
 });
 
@@ -57,7 +57,7 @@ wArticulos.addEventListener('swipe', function(e) {
 });
 
 var wAjustes = Titanium.UI.createWindow({
-	backgroundImage : "Fundacion0_001.jpg",
+	backgroundImage : "FundacionA_001.jpg",
 	title : 'Preferencias'
 });
 
@@ -68,7 +68,7 @@ wAjustes.addEventListener('swipe', function(e) {
 });
 
 var wSocial = Titanium.UI.createWindow({
-	backgroundImage : "Fundacion0_001.jpg",
+	backgroundImage : "FundacionD_001.jpg",
 	title : 'Social'
 });
 
@@ -121,9 +121,9 @@ function loadRSS(url, type) {
 		var tableData = [];
 		for (var i = 0; i < 10; i++) {
 			var row = Ti.UI.createTableViewSection({
-				headerTitle : 'Noticias'
+				headerTitle : itemList.item(i).getElementsByTagName("title").item(0).textContent
 			});
-			var texto = itemList.item(i).getElementsByTagName("title").item(0).textContent;
+			
 			row.add(Ti.UI.createTableViewRow({
 				title : texto
 			}));
