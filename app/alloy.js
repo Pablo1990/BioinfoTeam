@@ -12,7 +12,7 @@
 
 var wMenu = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_001.jpg",
-	title : 'Noticias'
+	title : 'Menu'
 });
 
 var wNoticias = Titanium.UI.createWindow({
@@ -23,12 +23,12 @@ var wNoticias = Titanium.UI.createWindow({
 wMenu.addEventListener('swipe', function(e) {
 	if(e.direction == 'right'){
 		var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
-		loadRSS(url);
+		loadRSS(url,0);
 		wNoticias.open();
 	}
 	else if(e.direction == 'left'){
 		var url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/erss.cgi?rss_guid=1RSu50XbTiNW5P-7402oRwT3E3NHLlHfWt_z7A2fjpVL_od5Qg';
-		loadRSS(url);
+		loadRSS(url,1);
 		wArticulos.open();
 	}
 	else if(e.direction == 'down'){
@@ -56,14 +56,21 @@ var wSocial = Titanium.UI.createWindow({
 	title : 'Social'
 });
 
-function setDatos(tablaDatos) {
+function setDatosArticulos(tablaDatos) {
+	var tableView = Ti.UI.createTableView({
+		data : tablaDatos
+	});
+	wArticulos.add(tableView);
+}
+
+function setDatosNoticias(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
 		data : tablaDatos
 	});
 	wNoticias.add(tableView);
 }
 
-function loadRSS(url) {
+function loadRSS(url, type) {
 
 	// url = http://www.ncbi.nlm.nih.gov/entrez/eutils/erss.cgi?rss_guid=1RSu50XbTiNW5P-7402oRwT3E3NHLlHfWt_z7A2fjpVL_od5Qg
 	data = [];
@@ -102,8 +109,10 @@ function loadRSS(url) {
 
 			tableData.push(row);
 		}
-
-		setDatos(tableData);
+		if(type==1)
+			setDatosArticulos(tableData);
+		else
+			setDatosNoticias(tableData);
 	};
 
 	xhr.send();
