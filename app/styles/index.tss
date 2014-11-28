@@ -1,5 +1,5 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundImage: "Base_Prueba_001.png"
 }
 
 "Label": {
