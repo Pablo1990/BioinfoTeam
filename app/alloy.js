@@ -16,20 +16,18 @@ var wMenu = Titanium.UI.createWindow({
 });
 
 wMenu.addEventListener('swipe', function(e) {
-	if(e.direction == 'right'){
+	if (e.direction == 'right') {
 		var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
-		loadRSS(url,0);
+		loadRSS(url, 0);
 		wNoticias.open();
-	}
-	else if(e.direction == 'left'){
+	} else if (e.direction == 'left') {
 		var url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/erss.cgi?rss_guid=1RSu50XbTiNW5P-7402oRwT3E3NHLlHfWt_z7A2fjpVL_od5Qg';
-		loadRSS(url,1);
+		loadRSS(url, 1);
 		wArticulos.open();
-	}
-	else if(e.direction == 'down'){
+	} else if (e.direction == 'down') {
 		wAjustes.open();
-	}
-	else if(e.direction == 'up'){
+	} else if (e.direction == 'up') {
+		
 		wSocial.open();
 	}
 });
@@ -40,7 +38,7 @@ var wNoticias = Titanium.UI.createWindow({
 });
 
 wNoticias.addEventListener('swipe', function(e) {
-	if(e.direction == 'left'){
+	if (e.direction == 'left') {
 		wNoticias.close();
 	}
 });
@@ -51,7 +49,7 @@ var wArticulos = Titanium.UI.createWindow({
 });
 
 wArticulos.addEventListener('swipe', function(e) {
-	if(e.direction == 'right'){
+	if (e.direction == 'right') {
 		wArticulos.close();
 	}
 });
@@ -62,7 +60,7 @@ var wAjustes = Titanium.UI.createWindow({
 });
 
 wAjustes.addEventListener('swipe', function(e) {
-	if(e.direction == 'up'){
+	if (e.direction == 'up') {
 		wAjustes.close();
 	}
 });
@@ -72,12 +70,8 @@ var wSocial = Titanium.UI.createWindow({
 	title : 'Social'
 });
 
-
 wSocial.addEventListener('swipe', function(e) {
-	
-	Ti.API.info("Swipe Social");
-	if(e.direction == 'down'){
-		Ti.API.info("Social -> Menu");
+	if (e.direction == 'down') {
 		wSocial.close();
 	}
 });
@@ -135,16 +129,16 @@ function loadRSS(url, type) {
 			var descriptionRaw = itemList.item(i).getElementsByTagName("description").item(0).textContent;
 			var regex = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g;
 			///<[a-zA-Z /%\="\:]+>/g
-			var description = descriptionRaw.replace(regex,"");
+			var description = descriptionRaw.replace(regex, "");
 			desc = Ti.UI.createTableViewRow({
-				title : description.trim().substr(0,80) + '...',
+				title : description.trim().substr(0, 80) + '...',
 				color : 'black'
 			});
-			row.addEventListener("click", function(e){
-				for (var j=0; j < 10; j++) {
+			row.addEventListener("click", function(e) {
+				for (var j = 0; j < 10; j++) {
 					title = itemList.item(j).getElementsByTagName("title").item(0).textContent;
-					Ti.API.info(title + " "+ row.getHeaderTitle());
-					if(row.getHeaderTitle() == title){
+					Ti.API.info(title + " " + row.getHeaderTitle());
+					if (row.getHeaderTitle() == title) {
 						link = itemList.item(j).getElementsByTagName("link").item(0).textContent;
 						Ti.API.info(link);
 						Ti.Platform.openURL(link);
@@ -153,13 +147,10 @@ function loadRSS(url, type) {
 				};
 			});
 			row.add(desc);
-			
-			//Ti.API.info('Item title ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
-			//Ti.API.info('Item dc:creator ' + itemList.item(i).getElementsByTagName("dc:creator").item(0).textContent);
 
 			tableData.push(row);
 		}
-		if(type==1)
+		if (type == 1)
 			setDatosArticulos(tableData);
 		else
 			setDatosNoticias(tableData);
