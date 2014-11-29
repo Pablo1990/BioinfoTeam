@@ -47,7 +47,7 @@ xhr.onload = function() {
 		top : '70dp',
 		left : '43dp',
 		right : '45dp',
-		bottom : '355dp',
+		bottom : '390dp',
 		borderRadius: '5dp'
 	});
 	wMenu.add(tableView);

@@ -19,17 +19,15 @@ var wMenu = Titanium.UI.createWindow({
 
 wMenu.addEventListener('swipe', function(e) {
 	if (e.direction == 'right') {
-		var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
-		loadRSS(url, 0);
+
 		wNoticias.open();
 	} else if (e.direction == 'left') {
-		var url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/erss.cgi?rss_guid=1RSu50XbTiNW5P-7402oRwT3E3NHLlHfWt_z7A2fjpVL_od5Qg';
-		loadRSS(url, 1);
+
 		wArticulos.open();
 	} else if (e.direction == 'down') {
 		wAjustes.open();
 	} else if (e.direction == 'up') {
-		
+
 		wSocial.open();
 	}
 });
@@ -81,7 +79,7 @@ wSocial.addEventListener('swipe', function(e) {
 function setDatosArticulos(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
 		data : tablaDatos,
-		top : '139dp',
+		top : '150dp',
 		left : '40dp',
 		right : '40dp',
 	});
@@ -91,7 +89,7 @@ function setDatosArticulos(tablaDatos) {
 function setDatosNoticias(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
 		data : tablaDatos,
-		top : '139dp',
+		top : '150dp',
 		left : '40dp',
 		right : '40dp',
 	});
@@ -137,16 +135,8 @@ function loadRSS(url, type) {
 				color : 'black'
 			});
 			row.addEventListener("click", function(e) {
-				for (var j = 0; j < 10; j++) {
-					title = itemList.item(j).getElementsByTagName("title").item(0).textContent;
-					Ti.API.info(title + " " + row.getHeaderTitle());
-					if (row.getHeaderTitle() == title) {
-						link = itemList.item(j).getElementsByTagName("link").item(0).textContent;
-						Ti.API.info(link);
-						Ti.Platform.openURL(link);
-						break;
-					}
-				};
+				link = itemList.item(i).getElementsByTagName("link").item(0).textContent;
+				Ti.Platform.openURL(link);
 			});
 			row.add(desc);
 
@@ -160,3 +150,8 @@ function loadRSS(url, type) {
 
 	xhr.send();
 }
+
+var url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/erss.cgi?rss_guid=1RSu50XbTiNW5P-7402oRwT3E3NHLlHfWt_z7A2fjpVL_od5Qg';
+loadRSS(url, 1);
+var url = 'http://www.elmundo.es/rss/hackathon/ciencia.xml';
+loadRSS(url, 0);
