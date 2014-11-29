@@ -93,6 +93,7 @@ function setDatosNoticias(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
 		data : tablaDatos
 	});
+	//tableView.addClass('tabla');
 	wNoticias.add(tableView);
 }
 
@@ -123,12 +124,15 @@ function loadRSS(url, type) {
 
 		var tableData = [];
 		for (var i = 0; i < 10; i++) {
-			var row = Ti.UI.createTableViewSection({
+			row = Ti.UI.createTableViewSection({
 				headerTitle : itemList.item(i).getElementsByTagName("title").item(0).textContent
 			});
-			var description = itemList.item(i).getElementsByTagName("description").item(0).textContent.replace(/<.*>/,"","g");
+			var descriptionRaw = itemList.item(i).getElementsByTagName("description").item(0).textContent;
+			var regex = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g;
+			///<[a-zA-Z /%\="\:]+>/g
+			var description = descriptionRaw.replace(regex,"");
 			desc = Ti.UI.createTableViewRow({
-				title : description
+				title : description.trim().substr(0,80) + '...'
 			});
 			row.addEventListener("click", function(e){
 				for (var j=0; j < 10; j++) {
