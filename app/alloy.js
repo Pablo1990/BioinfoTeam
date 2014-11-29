@@ -123,21 +123,26 @@ function loadRSS(url, type) {
 
 		var tableData = [];
 		for (var i = 0; i < 10; i++) {
-			row = Ti.UI.createTableViewSection({
+			var row = Ti.UI.createTableViewSection({
 				headerTitle : itemList.item(i).getElementsByTagName("title").item(0).textContent
 			});
+			var description = itemList.item(i).getElementsByTagName("description").item(0).textContent.replace(/<.*>/,"","g");
 			desc = Ti.UI.createTableViewRow({
-				title : itemList.item(i).getElementsByTagName("description").item(0).textContent
+				title : description
 			});
-			desc.addEventListener("click", function(e){
-				Ti.API.info(itemList.item(i).getElementsByTagName("link").item(0).textContent);
-				Ti.Platform.openURL(itemList.item(i).getElementsByTagName("link").item(0).textContent);
+			row.addEventListener("click", function(e){
+				for (var j=0; j < 10; j++) {
+					title = itemList.item(j).getElementsByTagName("title").item(0).textContent;
+					Ti.API.info(title + " "+ row.getHeaderTitle());
+					if(row.getHeaderTitle() == title){
+						link = itemList.item(j).getElementsByTagName("link").item(0).textContent;
+						Ti.API.info(link);
+						Ti.Platform.openURL(link);
+						break;
+					}
+				};
 			});
 			row.add(desc);
-			desc.addEventListener("onclick", function(e){
-				Ti.API.info("Click");
-				Ti.Platform.openURL(itemList.item(i).getElementsByTagName("link").item(0).textContent);
-			});
 			
 			//Ti.API.info('Item title ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
 			//Ti.API.info('Item dc:creator ' + itemList.item(i).getElementsByTagName("dc:creator").item(0).textContent);
