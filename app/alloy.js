@@ -129,6 +129,8 @@ function loadRSS(url, type) {
 			var desc = Ti.UI.createTableViewRow({
 				title : itemList.item(i).getElementsByTagName("description").item(0).textContent
 			});
+			var regex = /<+.*>+/;
+			var desc = desc.replace(regex,""); 
 			desc.addEventListener("onclick", function(e){
 				Ti.API.info("Click");
 				Ti.Platform.openURL(itemList.item(i).getElementsByTagName("link").item(0).textContent);
