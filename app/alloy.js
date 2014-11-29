@@ -123,17 +123,21 @@ function loadRSS(url, type) {
 
 		var tableData = [];
 		for (var i = 0; i < 10; i++) {
-			var row = Ti.UI.createTableViewSection({
+			row = Ti.UI.createTableViewSection({
 				headerTitle : itemList.item(i).getElementsByTagName("title").item(0).textContent
 			});
-			var desc = Ti.UI.createTableViewRow({
+			desc = Ti.UI.createTableViewRow({
 				title : itemList.item(i).getElementsByTagName("description").item(0).textContent
 			});
+			desc.addEventListener("click", function(e){
+				Ti.API.info(itemList.item(i).getElementsByTagName("link").item(0).textContent);
+				Ti.Platform.openURL(itemList.item(i).getElementsByTagName("link").item(0).textContent);
+			});
+			row.add(desc);
 			desc.addEventListener("onclick", function(e){
 				Ti.API.info("Click");
 				Ti.Platform.openURL(itemList.item(i).getElementsByTagName("link").item(0).textContent);
 			});
-			row.add(desc);
 			
 			//Ti.API.info('Item title ' + itemList.item(i).getElementsByTagName("title").item(0).textContent);
 			//Ti.API.info('Item dc:creator ' + itemList.item(i).getElementsByTagName("dc:creator").item(0).textContent);
