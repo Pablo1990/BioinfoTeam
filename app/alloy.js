@@ -10,6 +10,8 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+var itemList = [];
+
 var wMenu = Titanium.UI.createWindow({
 	backgroundImage : "Fundacion0_004.jpg",
 	title : 'Menu'
@@ -111,7 +113,7 @@ function loadRSS(url, type) {
 		// Now parse the feed XML
 		var xml = this.responseXML;
 
-		var itemList = xml.documentElement.getElementsByTagName("item");
+		itemList = xml.documentElement.getElementsByTagName("item");
 		Ti.API.info('found ' + itemList.length + ' items in the RSS feed');
 
 		/* title: Titulo de la noticia original
@@ -122,7 +124,7 @@ function loadRSS(url, type) {
 		 */
 
 		var tableData = [];
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < itemList.length; i++) {
 			row = Ti.UI.createTableViewSection({
 				headerTitle : itemList.item(i).getElementsByTagName("title").item(0).textContent
 			});
