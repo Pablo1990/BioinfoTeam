@@ -11,7 +11,7 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 
 var wMenu = Titanium.UI.createWindow({
-	backgroundImage : "Fundacion0_001.jpg",
+	backgroundImage : "Fundacion0_004.jpg",
 	title : 'Menu'
 });
 
@@ -84,16 +84,21 @@ wSocial.addEventListener('swipe', function(e) {
 
 function setDatosArticulos(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
-		data : tablaDatos
+		data : tablaDatos,
+		top : '139dp',
+		left : '40dp',
+		right : '40dp',
 	});
 	wArticulos.add(tableView);
 }
 
 function setDatosNoticias(tablaDatos) {
 	var tableView = Ti.UI.createTableView({
-		data : tablaDatos
+		data : tablaDatos,
+		top : '139dp',
+		left : '40dp',
+		right : '40dp',
 	});
-	//tableView.addClass('tabla');
 	wNoticias.add(tableView);
 }
 
@@ -132,7 +137,8 @@ function loadRSS(url, type) {
 			///<[a-zA-Z /%\="\:]+>/g
 			var description = descriptionRaw.replace(regex,"");
 			desc = Ti.UI.createTableViewRow({
-				title : description.trim().substr(0,80) + '...'
+				title : description.trim().substr(0,80) + '...',
+				color : 'black'
 			});
 			row.addEventListener("click", function(e){
 				for (var j=0; j < 10; j++) {
